@@ -41,14 +41,14 @@ namespace Text_Adventure_Game_Turtorial
                 case "1":
                 case "cry":
                     {
-                        Console.WriteLine("Your tears well up, dropping down to the ground in impossibly large drops. \n Puddles begin to form.");
+                        Console.WriteLine("Your tears well up, dropping down to the ground in impossible Alice In Wonderland proportions. \nPuddles begin to form.");
                         Console.WriteLine("The puddles become so deep they drown a Munchkin family.");
                         Console.WriteLine("You've now established yourself as a serial killer in this new land.");
-                        Console.WriteLine("The mayor of Munchkin Country is now approaching.");
-                        Console.WriteLine("You begin to notice truncheons and torches as a large group of small, but angry creatures in military uniforms march your way.");
+                        Console.WriteLine("The mayor of Munchkin Country is fast approaching.");
+                        Console.WriteLine("Over the horizon you see truncheons and torches appear out of the dusk, small but angry creatures in \nmilitary uniforms are marching your way.");
                         Console.WriteLine("Press 'Enter' to continue");
                         Console.ReadLine();
-                        gameOver();
+                        youLose();
                         break;
                     }
                 case "2":
@@ -90,6 +90,67 @@ namespace Text_Adventure_Game_Turtorial
 
         public static void secondChoice()
         {
+            string heelClickChoice;
+            Console.WriteLine("This beautiful sparkling witch introduces herself as Glinda from the North. \nYou find yourself marveling at her glowing skin and satin hair.");
+            Console.WriteLine("She tells you that she can grant you one wish.");
+            Console.WriteLine("What wish would you like granted?");
+            Console.WriteLine("[1] To go back home to Kansas");
+            Console.WriteLine("[2] That ToTo live forever");
+            Console.WriteLine("[3] That Aunt Em bites the dust");
+            Console.Write("Choice: ");
+            heelClickChoice = Console.ReadLine().ToLower();
+            Console.Clear();
+
+            switch (heelClickChoice)
+            {
+                case "1":
+                case "home":
+                case "to go back home":
+                case "to go back home to kansas":
+                    {
+                        Console.WriteLine("Glinda waves her wand over your sparkling shoes. They seem to shine brighter");
+                        Console.WriteLine("She tells you to click your heels three times while repeating 'There's no place like home.''");
+                        Console.WriteLine("Press 'Enter' to continue");
+                        Console.ReadLine();
+                        thirdChoice();
+                        break;
+                    }
+                case "2":
+                case "that toto live forever":
+                case "toto live forever":
+                {
+                    Console.WriteLine("Glinda frowns at you and looks you square in the eye");
+                    Console.WriteLine("It's not fair to force a living creature to live forever. \nTheir souls are meant to stay only as long as they are meant to.");
+                    Console.WriteLine("Press 'Enter' to continue");
+                    Console.ReadLine();
+                    gameOver();
+                    break;
+                }
+                case "3":
+                case "that aunt em bites the dust":
+                case "aunt em bites the dust":
+                {
+                    Console.WriteLine("Glinda got distracted by a cell phone ping and only heard 'bites the dust'.");
+                    Console.WriteLine("Not wanting to look unprofessional, she immediately turns you into Freddie Mercury.");
+                    Console.WriteLine("You now have an uncontrollable cocaine addiction and ToTo gets hooked on meth.");
+                    Console.WriteLine("Press 'Enter' to continue");
+                    Console.ReadLine();
+                    gameOver();
+                    break;
+                }
+                default:
+                {
+                    Console.WriteLine("I don't understand that command...'");
+                    Console.WriteLine("Pres 'Enter' to try again.");
+                    secondChoice();
+                    break;
+                }
+            }
+
+        }
+
+        public static void thirdChoice()
+        {
             Random rnd = new Random();
             string[] secondOptions = { "On the Yellow Brick Road, you see a meadow of poppies.", "On the Yellow Brick Road, you see an emerald city sparkling in the distance.", "On the Yellow Brick Road, you notice a shack with a straw roof.", "On The Yellow Brick Road, Toto takes off running after a small field mouse wearing a crown." };
             int randomNumber = rnd.Next(0, 3);
@@ -117,7 +178,7 @@ namespace Text_Adventure_Game_Turtorial
                     Console.WriteLine("Your destination is in sight! But the road is still long. \nPerhaps it's time to gather some companions!\n");
                     Console.WriteLine("Press 'Enter'");
                     Console.ReadLine();
-                    thirdChoice();
+                    companionChoice();
                 }
                 else if (secondText == secondOptions[2])
                 {
@@ -142,7 +203,7 @@ namespace Text_Adventure_Game_Turtorial
                     Console.WriteLine("Press 'Enter' to try again.");
                     secondChoice();
                 }
-                
+
             }
             else if (userChoice == "no" || userChoice == "n")
             {
@@ -159,7 +220,7 @@ namespace Text_Adventure_Game_Turtorial
             }
         }
 
-        public static void thirdChoice()
+        public static void fourthChoice()
         {
             int wizardAge;
 
@@ -170,7 +231,7 @@ namespace Text_Adventure_Game_Turtorial
             int.TryParse(Console.ReadLine(), out wizardAge);
 
 
-            while (wizardAge <= 70 && wizardAge >=100)
+            while (wizardAge <= 70 && wizardAge >= 100)
             {
                 Console.WriteLine("Seriously? You can do better than that!");
                 Console.WriteLine("\"Try again, Dorothy,\" says The Wizard");
@@ -184,10 +245,35 @@ namespace Text_Adventure_Game_Turtorial
             youWin();
         }
 
+        public static void companionChoice()
+        {
+            string characterChoice;
+
+            Console.WriteLine("Now that you've found yourself on a journey in a foreign land. It is time to find some local companions");
+            Console.WriteLine("Glinda hands you three resumes, complete with pictures.");
+            Console.WriteLine("Your first option is a ScareCrow come to life. He's zesty and lean, but lacks brains.");
+            Console.WriteLine("Your second option is a Lion. He's big and scary-looking... but he's cowardly and afraid of ToTo.");
+            Console.WriteLine("Your third option is a Tin Man. You find him oddly handsome, but discover he lacks a heart.");
+            Console.WriteLine("Which character would you like to accompany you?\n[1]\n[2]\n[3]");
+            Console.Write("Character choice: ");
+            characterChoice= Console.ReadLine();
+        }
+
         public static void gameOver()
         {
             Console.Clear();
             Console.WriteLine("At your funeral, they sing songs of your bravery. The Munchkins of Munchkin Country rename their townhall in your honor.");
+            Console.WriteLine("Better luck next time.");
+            Console.WriteLine("Press 'Enter' to try again");
+            Console.ReadLine();
+            Console.Clear();
+            gameTitle();
+        }
+
+        public static void youLose()
+        {
+            Console.Clear();
+            Console.WriteLine("At your funeral they spit on your grave and use dark magic to keep you dead. You murdering fiend...");
             Console.WriteLine("Better luck next time.");
             Console.WriteLine("Press 'Enter' to try again");
             Console.ReadLine();
