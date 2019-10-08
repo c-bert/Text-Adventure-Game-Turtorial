@@ -7,8 +7,10 @@ namespace Text_Adventure_Game_Turtorial
 {
     class Program
     {
+        public static CharacterDetails State;
         static void Main(string[] args)
         {
+            State = new CharacterDetails();
             gameTitle();
             firstChoice();
         }
@@ -109,7 +111,7 @@ namespace Text_Adventure_Game_Turtorial
                 case "to go back home to kansas":
                     {
                         Console.WriteLine("Glinda waves her wand over your sparkling shoes. They seem to shine brighter");
-                        Console.WriteLine("She tells you to click your heels three times while repeating 'There's no place like home.''");
+                        Console.WriteLine("She tells you to click your heels three times while repeating 'There's no place like home.'");
                         Console.WriteLine("Press 'Enter' to continue");
                         Console.ReadLine();
                         thirdChoice();
@@ -120,7 +122,7 @@ namespace Text_Adventure_Game_Turtorial
                 case "toto live forever":
                 {
                     Console.WriteLine("Glinda frowns at you and looks you square in the eye");
-                    Console.WriteLine("It's not fair to force a living creature to live forever. \nTheir souls are meant to stay only as long as they are meant to.");
+                    Console.WriteLine("It's not fair to force a living creature to live forever. \nTheir souls are built to stay only as long as they are meant to.");
                     Console.WriteLine("Press 'Enter' to continue");
                     Console.ReadLine();
                     gameOver();
@@ -159,6 +161,7 @@ namespace Text_Adventure_Game_Turtorial
             string userChoice;
 
             //now we need to output the secondText
+            Console.WriteLine("You find yourself transported to a long winding road of yellow bricks. The sky seems to expand\nforever in all directions, blue as the ocean.");
             Console.WriteLine(secondText);
             Console.WriteLine("Do you want to continue? Yes or No?");
             Console.Write("Choice: ");
@@ -201,7 +204,7 @@ namespace Text_Adventure_Game_Turtorial
                 {
                     Console.WriteLine("I don't understand that command...'");
                     Console.WriteLine("Press 'Enter' to try again.");
-                    fourthChoice();
+                    thirdChoice();
                 }
 
             }
@@ -210,7 +213,7 @@ namespace Text_Adventure_Game_Turtorial
                 Console.WriteLine("A meteor slams into Oz at that exact moment, killing you and everyone who lives there.");
                 Console.WriteLine("Press 'Enter' to continue");
                 Console.ReadLine();
-                gameOver();
+                youLose();
             }
             else
             {
@@ -220,10 +223,68 @@ namespace Text_Adventure_Game_Turtorial
             }
         }
 
-        public static void fourthChoice()
+        public static void companionChoice()
+        {
+            string characterChoice;
+
+            Console.WriteLine("Now that you've found yourself on a journey in a foreign land. It is time to find some local companions");
+            Console.WriteLine("Glinda hands you three resumes, complete with pictures.");
+            Console.WriteLine("Your first option is a ScareCrow come to life. He's zesty and lean, but lacks brains.");
+            Console.WriteLine("Your second option is a Lion. He's big and scary-looking... but he's cowardly and afraid of ToTo.");
+            Console.WriteLine("Your third option is a Tin Man. You find him oddly handsome, but discover he lacks a heart.");
+            Console.WriteLine("Which character would you like to accompany you?\n[1]\n[2]\n[3]");
+            Console.Write("Character choice: ");
+            characterChoice= Console.ReadLine().ToLower();
+
+            if (characterChoice == "1" || characterChoice == "scarecrow")
+            {
+                State.Companion = "Scarecrow";
+                Console.WriteLine("You've chosen ScareCrow as your companion.");
+                Console.WriteLine("Press 'Enter' to continue");
+                yellowBrickRoadAdventure();
+
+            }
+            else if (characterChoice == "2" || characterChoice == "lion")
+            {
+                State.Companion = "Lion";
+                Console.WriteLine("You've chosen the Lion as your companion.");
+                Console.WriteLine("Press 'Enter' to continue");
+                yellowBrickRoadAdventure();
+            }
+            else if (characterChoice == "3" || characterChoice == "tin man")
+            {
+                State.Companion = "Tin Man";
+                Console.WriteLine("You've chosen the Tin Man as your companion.");
+                Console.WriteLine("Press 'Enter' to continue");
+                yellowBrickRoadAdventure();
+            }
+            else
+            {
+                Console.WriteLine("I don't understand that command...");
+                Console.WriteLine("Press 'Enter' to try again.");
+                companionChoice();
+            }
+        }
+
+        public static void yellowBrickRoadAdventure()
+        {
+            Console.Clear();
+            Console.WriteLine($"Well, the road is long but at least you have {State.Companion} to keep you company.");
+            Console.WriteLine("And little ToTo too, of course.");
+            Console.WriteLine("Press 'Enter' to continue...");
+            Console.ReadLine();
+            Console.Clear();
+
+            Console.WriteLine($"{State.Companion} skips and prances down the brick road. He runs circles around you and tells you to hurry up.");
+            Console.WriteLine("You break into a run. Toto by your heels.");
+            Console.WriteLine("In the distance. A gleaming Emerald city peaks above the purple sky.");
+            wizardOfOzChoice();
+        }
+
+        public static void wizardOfOzChoice()
         {
             int wizardAge;
-
+            Console.Clear();
             Console.WriteLine("The Wizard agrees to see you after what seems like ages.");
             Console.WriteLine("The Wizard agreed to make you an honorary Emerald City citizen.");
             Console.WriteLine("But first, you must guess his age.");
@@ -243,20 +304,6 @@ namespace Text_Adventure_Game_Turtorial
             Console.WriteLine("Press 'Enter' to try again");
             Console.ReadLine();
             youWin();
-        }
-
-        public static void companionChoice()
-        {
-            string characterChoice;
-
-            Console.WriteLine("Now that you've found yourself on a journey in a foreign land. It is time to find some local companions");
-            Console.WriteLine("Glinda hands you three resumes, complete with pictures.");
-            Console.WriteLine("Your first option is a ScareCrow come to life. He's zesty and lean, but lacks brains.");
-            Console.WriteLine("Your second option is a Lion. He's big and scary-looking... but he's cowardly and afraid of ToTo.");
-            Console.WriteLine("Your third option is a Tin Man. You find him oddly handsome, but discover he lacks a heart.");
-            Console.WriteLine("Which character would you like to accompany you?\n[1]\n[2]\n[3]");
-            Console.Write("Character choice: ");
-            characterChoice= Console.ReadLine();
         }
 
         public static void gameOver()
