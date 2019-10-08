@@ -142,7 +142,7 @@ namespace Text_Adventure_Game_Turtorial
                 {
                     Console.WriteLine("I don't understand that command...'");
                     Console.WriteLine("Pres 'Enter' to try again.");
-                    secondChoice();
+                    thirdChoice();
                     break;
                 }
             }
@@ -201,7 +201,7 @@ namespace Text_Adventure_Game_Turtorial
                 {
                     Console.WriteLine("I don't understand that command...'");
                     Console.WriteLine("Press 'Enter' to try again.");
-                    secondChoice();
+                    fourthChoice();
                 }
 
             }
@@ -216,7 +216,7 @@ namespace Text_Adventure_Game_Turtorial
             {
                 Console.WriteLine("I don't understand that command...'");
                 Console.WriteLine("Press 'Enter' to try again.");
-                secondChoice();
+                thirdChoice();
             }
         }
 
