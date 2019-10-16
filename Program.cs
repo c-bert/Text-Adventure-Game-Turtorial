@@ -1,6 +1,7 @@
 ﻿//https://www.youtube.com/watch?v=3foH7ZfC-Hk
 
 using System;
+using System.Collections.Generic;
 using System.Net.WebSockets;
 
 namespace Text_Adventure_Game_Turtorial
@@ -12,7 +13,7 @@ namespace Text_Adventure_Game_Turtorial
         {
             State = new CharacterDetails();
             gameTitle();
-            firstChoice();
+            ArriveInOz();
         }
 
         public static void gameTitle()
@@ -21,11 +22,19 @@ namespace Text_Adventure_Game_Turtorial
             Console.WriteLine("Press Enter to Begin");
             Console.ReadLine();
             Console.Clear(); //clears the screen
-            firstChoice();
+            ArriveInOz();
         }
 
-        public static void firstChoice()
+        public static void ArriveInOz() //first choice
         {
+            OzShops firstShopStop = new OzShops
+            {
+                ShopkeepName = "Munchkin Country General",
+                ScreenId = 1,
+                AvailableItems = new List<ShopItems>()
+            };
+            
+
             string choice;
 
             Console.WriteLine("You find yourself in Dorothy's silver sparkling shoes. You've landed in Oz and the house has killed the Wicked Witch of the East, her legs popping out from under the porch steps.");
@@ -50,7 +59,7 @@ namespace Text_Adventure_Game_Turtorial
                         Console.WriteLine("Over the horizon you see truncheons and torches appear out of the dusk, small but angry creatures in \nmilitary uniforms are marching your way.");
                         Console.WriteLine("Press 'Enter' to continue");
                         Console.ReadLine();
-                        youLose();
+                        YouLose();
                         break;
                     }
                 case "2":
@@ -63,7 +72,7 @@ namespace Text_Adventure_Game_Turtorial
                         Console.WriteLine("they see your hand in the air and their most-senior Munchkin, Unc Nunkie, on the ground beside you.");
                         Console.WriteLine("Press 'Enter' to continue");
                         Console.ReadLine();
-                        gameOver();
+                        GameOver();
                         break;
                     }
                 case "3":
@@ -77,21 +86,24 @@ namespace Text_Adventure_Game_Turtorial
                         Console.WriteLine("Then, out of thin air, the Good Witch of the North appears in the center of town.");
                         Console.WriteLine("Press 'Enter' to continue");
                         Console.ReadLine();
-                        secondChoice();
+                        MakeAWishGlinda();
                         break;
                     }
                 default:
                     {
                         Console.WriteLine("I don't understand that command...'");
                         Console.WriteLine("Pres 'Enter' to try again.");
-                        firstChoice();
+                        ArriveInOz();
                         break;
                     }
             }
         }
 
-        public static void secondChoice()
+        public static void MakeAWishGlinda() //second choice
         {
+            OzShops secondShopStop = new OzShops();
+            secondShopStop.ScreenId = 2;
+
             string heelClickChoice;
             Console.WriteLine("This beautiful sparkling witch introduces herself as Glinda from the North. \nYou find yourself marveling at her glowing skin and satin hair.");
             Console.WriteLine("She tells you that she can grant you one wish.");
@@ -114,7 +126,7 @@ namespace Text_Adventure_Game_Turtorial
                         Console.WriteLine("She tells you to click your heels three times while repeating 'There's no place like home.'");
                         Console.WriteLine("Press 'Enter' to continue");
                         Console.ReadLine();
-                        thirdChoice();
+                        RandomYellowBrickRoadChoice();
                         break;
                     }
                 case "2":
@@ -125,7 +137,7 @@ namespace Text_Adventure_Game_Turtorial
                     Console.WriteLine("It's not fair to force a living creature to live forever. \nTheir souls are built to stay only as long as they are meant to.");
                     Console.WriteLine("Press 'Enter' to continue");
                     Console.ReadLine();
-                    gameOver();
+                    GameOver();
                     break;
                 }
                 case "3":
@@ -137,22 +149,25 @@ namespace Text_Adventure_Game_Turtorial
                     Console.WriteLine("You now have an uncontrollable cocaine addiction and ToTo gets hooked on meth.");
                     Console.WriteLine("Press 'Enter' to continue");
                     Console.ReadLine();
-                    gameOver();
+                    GameOver();
                     break;
                 }
                 default:
                 {
                     Console.WriteLine("I don't understand that command...'");
                     Console.WriteLine("Pres 'Enter' to try again.");
-                    thirdChoice();
+                    RandomYellowBrickRoadChoice();
                     break;
                 }
             }
 
         }
 
-        public static void thirdChoice()
+        public static void RandomYellowBrickRoadChoice() //third option
         {
+            OzShops thirdShopStop = new OzShops();
+            thirdShopStop.ScreenId = 3;
+
             Random rnd = new Random();
             string[] secondOptions = { "On the Yellow Brick Road, you see a meadow of poppies.", "On the Yellow Brick Road, you see an emerald city sparkling in the distance.", "On the Yellow Brick Road, you notice a shack with a straw roof.", "On The Yellow Brick Road, Toto takes off running after a small field mouse wearing a crown." };
             int randomNumber = rnd.Next(0, 3);
@@ -174,21 +189,21 @@ namespace Text_Adventure_Game_Turtorial
                     Console.WriteLine("You run through the field of poppies. The poppies are lush and soft against your skin. \nBefore you know it, you're laying in their fragrant scent and fall asleep.\n");
                     Console.WriteLine("Press 'Enter'");
                     Console.ReadLine();
-                    gameOver();
+                    GameOver();
                 }
                 else if (secondText == secondOptions[1])
                 {
                     Console.WriteLine("Your destination is in sight! But the road is still long. \nPerhaps it's time to gather some companions!\n");
                     Console.WriteLine("Press 'Enter'");
                     Console.ReadLine();
-                    companionChoice();
+                    CompanionChoice();
                 }
                 else if (secondText == secondOptions[2])
                 {
                     Console.WriteLine("You cautiously approach the shack. You hear a moan, like an injured kitten may be inside. \nImmediately upon stepping through the darkened door,\na bag is thrown over your head and a tall man throws you over his shoulder, potatoe-sack style.\n");
                     Console.WriteLine("Press 'Enter'");
                     Console.ReadLine();
-                    gameOver();
+                    GameOver();
                 }
                 else if (secondText == secondOptions[3])
                 {
@@ -204,7 +219,7 @@ namespace Text_Adventure_Game_Turtorial
                 {
                     Console.WriteLine("I don't understand that command...'");
                     Console.WriteLine("Press 'Enter' to try again.");
-                    thirdChoice();
+                    RandomYellowBrickRoadChoice();
                 }
 
             }
@@ -213,18 +228,21 @@ namespace Text_Adventure_Game_Turtorial
                 Console.WriteLine("A meteor slams into Oz at that exact moment, killing you and everyone who lives there.");
                 Console.WriteLine("Press 'Enter' to continue");
                 Console.ReadLine();
-                youLose();
+                YouLose();
             }
             else
             {
                 Console.WriteLine("I don't understand that command...'");
                 Console.WriteLine("Press 'Enter' to try again.");
-                thirdChoice();
+                RandomYellowBrickRoadChoice();
             }
         }
 
-        public static void companionChoice()
+        public static void CompanionChoice()
         {
+            OzShops fourthShopStop = new OzShops();
+            fourthShopStop.ScreenId = 4;
+
             string characterChoice;
 
             Console.WriteLine("Now that you've found yourself on a journey in a foreign land. It is time to find some local companions");
@@ -241,7 +259,7 @@ namespace Text_Adventure_Game_Turtorial
                 State.Companion = "Scarecrow";
                 Console.WriteLine("You've chosen ScareCrow as your companion.");
                 Console.WriteLine("Press 'Enter' to continue");
-                yellowBrickRoadAdventure();
+                YellowBrickRoadAdventure();
 
             }
             else if (characterChoice == "2" || characterChoice == "lion")
@@ -249,25 +267,28 @@ namespace Text_Adventure_Game_Turtorial
                 State.Companion = "Lion";
                 Console.WriteLine("You've chosen the Lion as your companion.");
                 Console.WriteLine("Press 'Enter' to continue");
-                yellowBrickRoadAdventure();
+                YellowBrickRoadAdventure();
             }
             else if (characterChoice == "3" || characterChoice == "tin man")
             {
                 State.Companion = "Tin Man";
                 Console.WriteLine("You've chosen the Tin Man as your companion.");
                 Console.WriteLine("Press 'Enter' to continue");
-                yellowBrickRoadAdventure();
+                YellowBrickRoadAdventure();
             }
             else
             {
                 Console.WriteLine("I don't understand that command...");
                 Console.WriteLine("Press 'Enter' to try again.");
-                companionChoice();
+                CompanionChoice();
             }
         }
 
-        public static void yellowBrickRoadAdventure()
+        public static void YellowBrickRoadAdventure()
         {
+            OzShops fifthShopStop = new OzShops();
+            fifthShopStop.ScreenId = 5;
+
             Console.Clear();
             Console.WriteLine($"Well, the road is long but at least you have {State.Companion} to keep you company.");
             Console.WriteLine("And little ToTo too, of course.");
@@ -278,11 +299,14 @@ namespace Text_Adventure_Game_Turtorial
             Console.WriteLine($"{State.Companion} skips and prances down the brick road. He runs circles around you and tells you to hurry up.");
             Console.WriteLine("You break into a run. Toto by your heels.");
             Console.WriteLine("In the distance. A gleaming Emerald city peaks above the purple sky.");
-            wizardOfOzChoice();
+            WizardOfOzChoice();
         }
 
-        public static void wizardOfOzChoice()
+        public static void WizardOfOzChoice()
         {
+            OzShops prepareForTheWizardShopStop = new OzShops();
+            prepareForTheWizardShopStop.ScreenId = 25;
+
             int wizardAge;
             Console.Clear();
             Console.WriteLine("The Wizard agrees to see you after what seems like ages.");
@@ -303,10 +327,10 @@ namespace Text_Adventure_Game_Turtorial
             Console.WriteLine("You've guessed wisely, Dorothy. Welcome to The Emerald City");
             Console.WriteLine("Press 'Enter' to try again");
             Console.ReadLine();
-            youWin();
+            YouWin();
         }
 
-        public static void gameOver()
+        public static void GameOver()
         {
             Console.Clear();
             Console.WriteLine("At your funeral, they sing songs of your bravery. The Munchkins of Munchkin Country rename their townhall in your honor.");
@@ -317,7 +341,7 @@ namespace Text_Adventure_Game_Turtorial
             gameTitle();
         }
 
-        public static void youLose()
+        public static void YouLose()
         {
             Console.Clear();
             Console.WriteLine("At your funeral they spit on your grave and use dark magic to keep you dead. You murdering fiend...");
@@ -328,7 +352,7 @@ namespace Text_Adventure_Game_Turtorial
             gameTitle();
         }
 
-        public static void youWin()
+        public static void YouWin()
         {
             Console.Clear();
             Console.WriteLine("Dorothy successfully makes it to The Emerald City and meets with The Wizard of Oz.");

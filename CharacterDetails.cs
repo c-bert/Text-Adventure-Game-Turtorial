@@ -7,5 +7,6 @@ namespace Text_Adventure_Game_Turtorial
     class CharacterDetails
     {
         public string Companion { get; set; }
+        public List<ShopItems> Inventory { get; set; }
     }
 }
